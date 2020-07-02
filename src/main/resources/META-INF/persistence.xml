@@ -8,13 +8,43 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://bkermu5jlydbabo0nfdb-mysql.services.clever-cloud.com:3306/bkermu5jlydbabo0nfdb?serverTimezone=Europe/Paris"/>
-			<property name="javax.persistence.jdbc.user" value="u7ytkvjqv52rgtdx" />
-			<property name="javax.persistence.jdbc.password" value="dpALpDcCiBMspRJZk8YQ" />
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://bkermu5jlydbabo0nfdb-mysql.services.clever-cloud.com:3306/bkermu5jlydbabo0nfdb?serverTimezone=Europe/Paris" />
+			<property name="javax.persistence.jdbc.user"
+				value="u7ytkvjqv52rgtdx" />
+			<property name="javax.persistence.jdbc.password"
+				value="dpALpDcCiBMspRJZk8YQ" />
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL8Dialect" />
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="banque_essai"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>banque.entite.Banque</class>
+		<class>banque.entite.Client</class>
+		<class>banque.entite.Compte</class>
+		<class>banque.entite.LivretA</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://bnul0fbhu6v8dbrxru7q-mysql.services.clever-cloud.com:3306/bnul0fbhu6v8dbrxru7q?serverTimezone=Europe/Paris" />
+			<property name="javax.persistence.jdbc.user"
+				value="uyni248yatumy866" />
+			<property name="javax.persistence.jdbc.password"
+				value="fW4hjZZqCX9sb0R0M2JZ" />
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.MySQL8Dialect" />
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.archive.autodetection" value="" />
 		</properties>
 	</persistence-unit>
 </persistence>
