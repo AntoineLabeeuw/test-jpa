@@ -1,8 +1,11 @@
 package TestJpa.entites;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,6 +27,22 @@ public class Livre {
 	/** auteur du livre */
 	@Column(name = "AUTEUR")
 	private String auteur;
+	@ManyToMany(mappedBy="livres")
+	private Set<Emprunt> empruntsLivres;
+
+	/** Getter
+	 * @return the empruntsLivres
+	 */
+	public Set<Emprunt> getEmpruntsLivres() {
+		return empruntsLivres;
+	}
+
+	/** Setter
+	 * @param empruntsLivres the empruntsLivres to set
+	 */
+	public void setEmpruntsLivres(Set<Emprunt> empruntsLivres) {
+		this.empruntsLivres = empruntsLivres;
+	}
 
 	/**
 	 * Getter

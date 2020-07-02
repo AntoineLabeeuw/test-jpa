@@ -1,8 +1,12 @@
 package TestJpa.entites;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,6 +28,8 @@ public class Client {
 	/** prenom du client */
 	@Column(name = "PRENOM")
 	private String prenom;
+	@OneToMany(mappedBy="Client")
+	private Set<Emprunt> emprunts; 
 
 	/**
 	 * Getter
@@ -79,11 +85,26 @@ public class Client {
 		this.prenom = prenom;
 	}
 
+	/** Getter
+	 * @return the emprunts
+	 */
+	public Set<Emprunt> getEmprunts() {
+		return emprunts;
+	}
+
+	/** Setter
+	 * @param emprunts the emprunts to set
+	 */
+	public void setEmprunts(Set<Emprunt> emprunts) {
+		this.emprunts = emprunts;
+	}
+
 	/**
 	 * Constructeur
 	 * 
 	 */
 	public Client() {
+		this.emprunts = new HashSet<Emprunt>();
 	}
 
 	@Override

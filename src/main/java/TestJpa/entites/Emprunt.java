@@ -1,10 +1,15 @@
 package TestJpa.entites;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,8 +35,30 @@ public class Emprunt {
 	@Column(name = "DELAI")
 	private int delai;
 	/** identifiant du client */
-	@Column(name = "ID_CLIENT")
-	private int idClient;
+	@ManyToOne
+	@JoinColumn(name = "ID_CLIENT")
+	private Client Client;
+	@ManyToMany
+	@JoinTable(name="COMPO",
+		joinColumns=@JoinColumn(name="ID_LIV", referencedColumnName = "ID"),
+		inverseJoinColumns=@JoinColumn(name="ID_EMP", referencedColumnName = "ID"))
+	private Set<Livre> livres;
+
+	/** Getter
+	 * @return the livres
+	 */
+	public Set<Livre> getLivres() {
+		return livres;
+	}
+
+	/** Setter
+	 * @param livres the livres to set
+	 */
+	public void setLivres(Set<Livre> livres) {
+		this.livres = livres;
+	}
+
+
 
 	/**
 	 * Getter
@@ -110,8 +137,8 @@ public class Emprunt {
 	 * 
 	 * @return the idClient
 	 */
-	public int getIdClient() {
-		return idClient;
+	public Client getClient() {
+		return Client;
 	}
 
 	/**
@@ -119,8 +146,8 @@ public class Emprunt {
 	 * 
 	 * @param idClient the idClient to set
 	 */
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
+	public void setClient(Client Client) {
+		this.Client = Client;
 	}
 
 	/**
@@ -133,7 +160,7 @@ public class Emprunt {
 	@Override
 	public String toString() {
 		return "Emprunt [id=" + id + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", delai=" + delai
-				+ ", idClient=" + idClient + "]";
+				+ ", Client=" + Client + "]";
 	}
 
 }
