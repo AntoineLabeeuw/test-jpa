@@ -10,6 +10,12 @@ import javax.persistence.TypedQuery;
 
 import TestJpa.entites.Livre;
 
+/**
+ * classe éxécutable pour les tests JPA
+ * 
+ * @author antoinelabeeuw
+ *
+ */
 public class TestJpa {
 
 	public static void main(String[] args) {

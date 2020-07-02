@@ -5,14 +5,23 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Classe conceptualisant un livre
+ * 
+ * @author antoinelabeeuw
+ *
+ */
 @Entity
 @Table(name = "LIVRE")
 public class Livre {
+	/** identifiant */
 	@Id
-	@Column(name="ID")
+	@Column(name = "ID")
 	private Integer id;
+	/** titre du livre */
 	@Column(name = "TITRE")
 	private String titre;
+	/** auteur du livre */
 	@Column(name = "AUTEUR")
 	private String auteur;
 
@@ -96,7 +105,5 @@ public class Livre {
 	public String toString() {
 		return "Livre [id=" + id + ", titre=" + titre + ", auteur=" + auteur + "]";
 	}
-
-	
 
 }
