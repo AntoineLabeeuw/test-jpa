@@ -31,9 +31,10 @@ public class TestJpa {
 		// insertion d'un nouveau livre dans la BDD : necessite un contexte de
 		// transaction
 		EntityTransaction tx = entityManager.getTransaction();
-		tx.begin();
+		//tx.begin();
 		Livre newLivre = new Livre(6, "Biochimie", "Donald VOET et Judith G.VOET");
 		try {
+			tx.begin();
 			entityManager.persist(newLivre);
 			tx.commit();
 		} catch (Exception e) {
@@ -41,7 +42,7 @@ public class TestJpa {
 		}
 
 		// modification du livre avec l'id 5
-
+		tx.begin();
 		Livre livreAmodifier = entityManager.find(Livre.class, 5);
 		if (livreAmodifier != null) {
 			livreAmodifier.setTitre("Du plaisir dans la cuisine");
@@ -68,6 +69,7 @@ public class TestJpa {
 		System.out.println(listeLivres2.get(0));
 
 		// suppression d'un livre
+		tx.begin();
 		Livre livreASupprimer = entityManager.find(Livre.class, 2);
 		if (livreASupprimer != null) {
 			try {
