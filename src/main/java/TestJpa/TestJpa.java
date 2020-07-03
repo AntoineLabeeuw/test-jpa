@@ -32,7 +32,6 @@ public class TestJpa {
 		// transaction
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
-
 		Livre newLivre = new Livre(6, "Biochimie", "Donald VOET et Judith G.VOET");
 		try {
 			entityManager.persist(newLivre);
@@ -46,12 +45,12 @@ public class TestJpa {
 		Livre livreAmodifier = entityManager.find(Livre.class, 5);
 		if (livreAmodifier != null) {
 			livreAmodifier.setTitre("Du plaisir dans la cuisine");
-		}
-		try {
-			entityManager.merge(livreAmodifier);
-			tx.commit();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+
+			try {
+				tx.commit();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
 
 		// requête JPQL sur le titre du livre
@@ -71,9 +70,13 @@ public class TestJpa {
 		// suppression d'un livre
 		Livre livreASupprimer = entityManager.find(Livre.class, 2);
 		if (livreASupprimer != null) {
-			System.out.println("Suppression du livre : " + livreASupprimer);
-			entityManager.remove(livreASupprimer);
-			tx.commit();
+			try {
+				System.out.println("Suppression du livre : " + livreASupprimer);
+				entityManager.remove(livreASupprimer);
+				tx.commit();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
 
 		// affichage de tous les livres dans la BDD
