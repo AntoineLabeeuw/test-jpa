@@ -1,13 +1,20 @@
 package banque.entites;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Classe conceptualisant un livret A
  * 
  * @author antoinelabeeuw
  *
  */
+@Entity
+@Table(name = "LIVRET_A")
 public class LivretA extends Compte {
 	/** taux */
+	@Column(name = "TAUX")
 	private double taux;
 
 	/**
@@ -33,18 +40,7 @@ public class LivretA extends Compte {
 	 * 
 	 */
 	public LivretA() {
-	}
-
-	/**
-	 * Constructeur
-	 * 
-	 * @param numero : le numero du compte
-	 * @param solde  : le solde du compte
-	 * @param taux   : le taux de remuneration
-	 */
-	public LivretA(String numero, double solde, double taux) {
-		super(numero, solde);
-		this.taux = taux;
+		super();
 	}
 
 }

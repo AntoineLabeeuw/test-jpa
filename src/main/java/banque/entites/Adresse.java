@@ -1,11 +1,14 @@
 package banque.entites;
 
+import javax.persistence.Embeddable;
+
 /**
  * Classe qui conceptualise une adresse
  * 
  * @author antoinelabeeuw
  *
  */
+@Embeddable
 public class Adresse {
 	/** numero */
 	private int numero;

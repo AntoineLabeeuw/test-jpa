@@ -1,6 +1,7 @@
 package banque.entites;
 
-import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 /**
  * Classe qui conceptualise un virement d'un compte vers un beneficiaire
@@ -8,8 +9,10 @@ import java.time.LocalDateTime;
  * @author antoinelabeeuw
  *
  */
+@Entity
 public class Virement extends Operation {
 	/** beneficiaire */
+	@Column(name = "BENEFICIAIRE", length = 60)
 	private String beneficiaire;
 
 	/**
@@ -33,21 +36,9 @@ public class Virement extends Operation {
 	/**
 	 * Constructeur
 	 * 
-	 * @param date         : la date du virement
-	 * @param montant      : le montant du virement
-	 * @param motif        : le motif du virement
-	 * @param beneficiaire : le beneficiaire du virement
-	 */
-	public Virement(LocalDateTime date, double montant, String motif, String beneficiaire) {
-		super(date, montant, motif);
-		this.beneficiaire = beneficiaire;
-	}
-
-	/**
-	 * Constructeur
-	 * 
 	 */
 	public Virement() {
+		super();
 	}
 
 }

@@ -2,16 +2,24 @@ package banque.entites;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Classe qui conceptualise une assurance vie.
  * 
  * @author antoinelabeeuw
  *
  */
+@Entity
+@Table(name = "ASSURANCE_VIE")
 public class AssuranceVie extends Compte {
 	/** dateFin */
+	@Column(name = "DATE_FIN")
 	private LocalDate dateFin;
 	/** taux */
+	@Column(name = "TAUX")
 	private double taux;
 
 	/**
@@ -53,15 +61,9 @@ public class AssuranceVie extends Compte {
 	/**
 	 * Constructeur
 	 * 
-	 * @param numero
-	 * @param solde
-	 * @param dateFin
-	 * @param taux
 	 */
-	public AssuranceVie(String numero, double solde, LocalDate dateFin, double taux) {
-		super(numero, solde);
-		this.dateFin = dateFin;
-		this.taux = taux;
+	public AssuranceVie() {
+		super();
 	}
 
 }

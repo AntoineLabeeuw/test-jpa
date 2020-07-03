@@ -2,6 +2,18 @@ package banque.entites;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  * Classe qui conceptualise une operation sur un compte
  * 
@@ -12,13 +24,64 @@ import java.time.LocalDateTime;
  * @author antoinelabeeuw
  *
  */
+@Entity
+@Table(name = "OPERATION")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE")
 public class Operation {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private int id;
 	/** date */
+	@Column(name = "DATE")
 	private LocalDateTime date;
 	/** montant */
+	@Column(name = "MONTANT")
 	private double montant;
 	/** motif */
+	@Column(name = "MOTIF")
 	private String motif;
+	/** client du compte */
+	@ManyToOne
+	@JoinColumn(name = "ID_COMPTE")
+	private Compte compte;
+
+	/**
+	 * Getter
+	 * 
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the compte
+	 */
+	public Compte getCompte() {
+		return compte;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param compte the compte to set
+	 */
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
 
 	/**
 	 * Getter
@@ -71,20 +134,6 @@ public class Operation {
 	 * @param motif the motif to set
 	 */
 	public void setMotif(String motif) {
-		this.motif = motif;
-	}
-
-	/**
-	 * Constructeur
-	 * 
-	 * @param date    : la date de l'operation
-	 * @param montant : le montant de l'operation
-	 * @param motif   : le motif de l'operation
-	 */
-	public Operation(LocalDateTime date, double montant, String motif) {
-		super();
-		this.date = date;
-		this.montant = montant;
 		this.motif = motif;
 	}
 
